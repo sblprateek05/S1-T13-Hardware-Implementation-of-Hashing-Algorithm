@@ -32,12 +32,13 @@ formance limitations, particularly in systems with strict timing and power requi
 creates challenges for applications that require both robust security and efficient performance,
 highlighting the need for a more effective solution.
   
-  > 3. Features:
+  > Features:
   • Hardware implementation of the SHA-256 algorithm.
-  • Significant improvements in processing speed and power efficiency compared to software solutions.
-  • Optimization for small inputs and a considerable number of hashing functions.
-  • Viability for applications that require enhanced security and performance optimization.
-  • SHA-256 enable parallel data block processing, enhancing hash computation speed, especially in hardware implementations.
+  <br>• Significant improvements in processing speed and power efficiency compared to software solutions.
+  <br>• Optimization for small inputs and a considerable number of hashing functions.
+  <br>• Viability for applications that require enhanced security and performance optimization.
+  <br>• SHA-256 enable parallel data block processing, enhancing hash computation speed, especially in hardware implementations.
+
 </details>
 
 <!-- Third Section -->
