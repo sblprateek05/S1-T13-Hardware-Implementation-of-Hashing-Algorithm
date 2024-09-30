@@ -7,7 +7,7 @@
 
   > Semester: 3rd Sem B. Tech. CSE
 
-  > Section: S1/S2
+  > Section: S1
 
   > Member-1: A R Sharan Kumar, 231CS101, arsharankumar.231cs101@nitk.edu.in
 
