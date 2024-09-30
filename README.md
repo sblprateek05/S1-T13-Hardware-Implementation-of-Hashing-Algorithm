@@ -33,7 +33,7 @@ creates challenges for applications that require both robust security and effici
 highlighting the need for a more effective solution.
   
   > Features:
-  • Hardware implementation of the SHA-256 algorithm.
+  <br>• Hardware implementation of the SHA-256 algorithm.
   <br>• Significant improvements in processing speed and power efficiency compared to software solutions.
   <br>• Optimization for small inputs and a considerable number of hashing functions.
   <br>• Viability for applications that require enhanced security and performance optimization.
