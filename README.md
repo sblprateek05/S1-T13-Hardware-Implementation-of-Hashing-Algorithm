@@ -1,4 +1,4 @@
-# Write your mini-project title
+# Hardware Implementation of Hashing Algorithm
 
 <!-- First Section -->
 ## Team Details
@@ -27,8 +27,8 @@ constrained environments like embedded systems and IoT devices. By implementing 
 256 in hardware, we aim to achieve significant improvements in processing speed and power
 efficiency, which are critical for optimizing security and performance in these applications.
   
-  > Problem Statement: Traditional software implementations of SHA-256 can suffer from per-
-formance limitations, particularly in systems with strict timing and power requirements. This
+  > Problem Statement: Traditional software implementations of SHA-256 can suffer from performance
+limitations, particularly in systems with strict timing and power requirements. This
 creates challenges for applications that require both robust security and efficient performance,
 highlighting the need for a more effective solution.
   
