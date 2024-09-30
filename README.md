@@ -34,16 +34,10 @@ highlighting the need for a more effective solution.
   
   > 3. Features:
   • Hardware implementation of the SHA-256 algorithm.
-
-  • Significant improvements in processing speed and power efficiency compared to software
-  solutions.
-
+  • Significant improvements in processing speed and power efficiency compared to software solutions.
   • Optimization for small inputs and a considerable number of hashing functions.
-
   • Viability for applications that require enhanced security and performance optimization.
-
-  • SHA-256 enable parallel data block processing, enhancing hash computation speed, espe-
-  cially in hardware implementations.
+  • SHA-256 enable parallel data block processing, enhancing hash computation speed, especially in hardware implementations.
 </details>
 
 <!-- Third Section -->
