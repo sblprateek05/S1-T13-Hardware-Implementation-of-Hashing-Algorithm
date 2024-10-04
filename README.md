@@ -42,7 +42,7 @@ highlighting the need for a more effective solution.
 </details>
 
 <!-- Third Section -->
-## Working
+## Block Diagram
 <details>
   <summary>Detail</summary>
 
@@ -50,6 +50,14 @@ highlighting the need for a more effective solution.
 </details>
 
 <!-- Fourth Section -->
+## Working
+<details>
+  <summary>Detail</summary>
+
+  > Explain the working of your model with the help of a functional table (compulsory) followed by the flowchart.
+</details>
+
+<!-- Fifth Section -->
 ## Logisim Circuit Diagram
 <details>
   <summary>Detail</summary>
@@ -57,7 +65,7 @@ highlighting the need for a more effective solution.
   > Update a neat logisim circuit diagram
 </details>
 
-<!-- Fifth Section -->
+<!-- Sixth Section -->
 ## Verilog Code
 <details>
   <summary>Detail</summary>
