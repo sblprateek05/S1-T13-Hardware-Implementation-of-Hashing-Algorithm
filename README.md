@@ -45,6 +45,7 @@ highlighting the need for a more effective solution.
 ## Functional Block Diagram
 <details>
   <summary>Detail</summary>
+![S1-T13](https://github.com/user-attachments/assets/bda8a19e-dd27-4588-94f4-a7eaa28837fc)
 
 
 </details>
