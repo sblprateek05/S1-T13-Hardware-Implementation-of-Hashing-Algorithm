@@ -45,7 +45,8 @@ highlighting the need for a more effective solution.
 ## Functional Block Diagram
 <details>
   <summary>Detail</summary>
-  [Alt Text](a.png)
+ ![S1-T13](https://github.com/user-attachments/assets/46b03bdd-8844-4c12-baff-61a808dc72b8)
+
 
 </details>
 
