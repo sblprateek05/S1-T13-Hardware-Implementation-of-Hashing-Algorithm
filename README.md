@@ -44,7 +44,8 @@ highlighting the need for a more effective solution.
 <!-- Third Section -->
 ## Functional Block Diagram
 <details>
-  <summary>Detail</summary>
+  <summary![S1-T13 drawio](https://github.com/user-attachments/assets/378161f3-301e-477d-af04-a78554a433a6)
+>Detail</summary>
 
   > Explain the working of your model with the help of a functional table (compulsory) followed by the flowchart.
 </details>
