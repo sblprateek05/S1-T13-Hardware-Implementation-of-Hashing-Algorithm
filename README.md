@@ -45,8 +45,7 @@ highlighting the need for a more effective solution.
 ## Functional Block Diagram
 <details>
   <summary>Detail</summary>
-
-
+  [Alt Text](images/a.png)
 
 </details>
 
@@ -73,6 +72,5 @@ highlighting the need for a more effective solution.
 
   > Neatly update the Verilog code in code style only.
 </details>
-![S1-T13](https://github.com/user-attachments/assets/33fa0e9e-20b1-475f-8767-4b4b7c69b8da)
 
 
