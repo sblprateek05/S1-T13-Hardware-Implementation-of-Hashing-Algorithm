@@ -48,7 +48,7 @@ highlighting the need for a more effective solution.
 
 
 </details>
-![S1-T13](https://github.com/user-attachments/assets/c4ee89b0-2f6f-40a9-a876-c048f9fffeae)
+<img width="160" alt="S1-T13 src="https://github.com/user-attachments/assets/c4ee89b0-2f6f-40a9-a876-c048f9fffeae">
 
 <!-- Fourth Section -->
 ## Working
