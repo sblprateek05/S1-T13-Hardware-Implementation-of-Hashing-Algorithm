@@ -42,7 +42,7 @@ highlighting the need for a more effective solution.
 </details>
 
 <!-- Third Section -->
-## Block Diagram
+## Functional Block Diagram
 <details>
   <summary>Detail</summary>
 
