@@ -45,7 +45,7 @@ highlighting the need for a more effective solution.
 ## Functional Block Diagram
 <details>
   <summary>Detail</summary>
-  [Alt Text](images/a.png)
+  [Alt Text](a.png)
 
 </details>
 
