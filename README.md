@@ -43,11 +43,11 @@ highlighting the need for a more effective solution.
 
 <!-- Third Section -->
 ## Functional Block Diagram
-<detail>
+<details>
   <summary>Detail</summary>
- ![S1-T13](https://github.com/user-attachments/assets/e7369af6-9675-4096-9676-58de2b43dc5f)
-</detail>
 
+
+</details>
 
 
 <!-- Fourth Section -->
