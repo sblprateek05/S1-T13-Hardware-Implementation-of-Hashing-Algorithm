@@ -44,8 +44,7 @@ highlighting the need for a more effective solution.
 <!-- Third Section -->
 ## Functional Block Diagram
 <details>
-  <summary![S1-T13 drawio](https://github.com/user-attachments/assets/378161f3-301e-477d-af04-a78554a433a6)
->Detail</summary>
+  <summary>Detail</summary>
 ![S1-T13](https://github.com/user-attachments/assets/a6efccb0-13cb-4d32-bc46-ef264a24903b)
 
 </details>
