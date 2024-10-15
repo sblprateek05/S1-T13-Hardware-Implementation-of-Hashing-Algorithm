@@ -137,45 +137,59 @@ highlighting the need for a more effective solution.
 <details>
   <summary>Detail</summary>
 
+>## Main Module
 ><img alt="Main Module" src="https://github.com/user-attachments/assets/ebbba9e2-6b5f-4b04-b7c7-65efed04a990"><img/>
 
 
 
+>## Padding Module
 ><img alt="Padding" src="https://github.com/user-attachments/assets/3696e794-8b66-4613-8aec-90f647cca45e"><img/>
 
 
 
+>## Ws Module
 ><img alt="Ws" src="https://github.com/user-attachments/assets/6d092195-e13e-492d-8fee-1431882cda03"><img/>
 
 
 
+>## Small Sigma Function
 ><img alt="Small Sigma Function" src="https://github.com/user-attachments/assets/52955470-6dff-4340-9a25-753681596404"><img/>
 
 
 
+>## Upcounter Module
 ><img alt="Upcounter" src="https://github.com/user-attachments/assets/705511ca-8e32-4a50-a426-46a967f6f5ac"><img/>
 
 
 
+>## Hash Generator Module
 ><img alt="Hash Generator" src="https://github.com/user-attachments/assets/e0e0dd9a-05d3-4a97-8c2c-b655835bbf9c"><img/>
 
 
+>## Last Upcounter Module
+><img alt="Last Upcounter" src="https://github.com/user-attachments/assets/edb18203-5406-4726-a2ac-80e78187a23d"><img/>
+
+
+
+>## Sigma 0 Module
 ><img alt="Sigma 0" src="https://github.com/user-attachments/assets/40d1ea6e-ce96-4abe-9c6d-5904d353d935"><img/>
 
+>## Sigma 1 Module
 ><img alt="Sigma 1" src="https://github.com/user-attachments/assets/46ea875a-3dbd-4a7d-9b21-b01484237720"><img/>
 
 
+>## T1 Module
 ><img alt="T1" src="https://github.com/user-attachments/assets/ff9e220e-3c0a-485d-81fe-1301544b6d4a"><img/>
 
 
 
+>## T2 Module
 ><img alt="T2" src="https://github.com/user-attachments/assets/63b652c3-aee4-48ee-b07f-d5f4285d4580"><img/>
 
 
-><img alt="Last Upcounter" src="https://github.com/user-attachments/assets/edb18203-5406-4726-a2ac-80e78187a23d"><img/>
 
-
-><img alt="Last Upcounter" src="https://github.com/user-attachments/assets/125535f4-8cba-43f7-8cef-202d5b2fbfb6"><img/>
+>## Characters Module
+><img alt="Characters" src="https://github.com/user-attachments/assets/125535f4-8cba-43f7-8cef-202d5b2fbfb6"><img/>
 
 
 
