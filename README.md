@@ -70,16 +70,16 @@ highlighting the need for a more effective solution.
 <br>•	The blocks M0, M1, M2, and M3 form the input message.
 
 > 2.	Message Expansion:
-•	The input message blocks are expanded into 8 words (W0 to W7) using the following equations:
-–	For W0 to W3:
-W(t) = M(t) for 0 <= t <= 3.
-This means W0 = M0, W1 = M1, W2 = M2, and W3 = M3.
-–	For W4 to W7:
-W(t) = small sigma(W(t-3)) + W(t-1) for 4 <= t <= 7. The small sigma function is defined as:
-small sigma(x) = ROT11(x) ˆ ROT7(x) ˆ RSH3(x), where:
-∗ ROT11(x) is a rotation of x by 11 bits,
-∗ ROT7(x) is a rotation by 7 bits,
-∗ RSH3(x) is a right shift by 3 bits.
+<br>•	The input message blocks are expanded into 8 words (W0 to W7) using the following equations:
+<br> –	For W0 to W3:
+<br> W(t) = M(t) for 0 <= t <= 3.
+<br >This means W0 = M0, W1 = M1, W2 = M2, and W3 = M3.
+<br> –	For W4 to W7:
+<br> W(t) = small sigma(W(t-3)) + W(t-1) for 4 <= t <= 7. The small sigma function is defined as:
+<br> small sigma(x) = ROT11(x) ˆ ROT7(x) ˆ RSH3(x), where:
+<br> ∗ ROT11(x) is a rotation of x by 11 bits,
+<br> ∗ ROT7(x) is a rotation by 7 bits,
+<br> ∗ RSH3(x) is a right shift by 3 bits.
 
 > 3.	Initial Hash Values (a, b, c, d):
 •	The initial hash values a, b, c, and d are constants derived from the first 16 bits of the decimal part of the square roots of the first 4 prime numbers:
