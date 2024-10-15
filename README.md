@@ -138,7 +138,7 @@ highlighting the need for a more effective solution.
   <summary>Detail</summary>
 
 >## Main Module
-><img alt="Main Module" src="https://github.com/user-attachments/assets/ebbba9e2-6b5f-4b04-b7c7-65efed04a990"><img/>
+><img alt="Main Module" src="https://github.com/user-attachments/assets/80dcd7b3-6702-4f2c-96c8-d6a72f02e66b"><img/>
 
 
 
