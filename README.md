@@ -62,12 +62,12 @@ highlighting the need for a more effective solution.
 <img alt="S1-T13" src="https://github.com/user-attachments/assets/609ed5a3-643e-47c2-8d9a-046a5b99929e"><img/>
 
 > 1.	Input Handling:
-<br>	The system takes 6 ASCII values, each 8 bits long. These values are paired to form 16-bit message blocks:
+<br>•	The system takes 6 ASCII values, each 8 bits long. These values are paired to form 16-bit message blocks:
 > M0 = {in0, in1}
 > M1 = {in2, in3}
 > M2 = {in4, in5}
-<br>	A fourth block, M3, holds the number of non-zero inputs to define the length of the message.
-<br>	The blocks M0, M1, M2, and M3 form the input message.
+<br>•	A fourth block, M3, holds the number of non-zero inputs to define the length of the message.
+<br>•	The blocks M0, M1, M2, and M3 form the input message.
 
 > 2.	Message Expansion:
 •	The input message blocks are expanded into 8 words (W0 to W7) using the following equations:
