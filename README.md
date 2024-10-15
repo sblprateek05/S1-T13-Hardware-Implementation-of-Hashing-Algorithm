@@ -115,9 +115,7 @@ highlighting the need for a more effective solution.
 <br>•	a= T1 + T2
 
 > 6.	Final Hash Value:
-
-<br>•	After completing the 8 rounds, the final values of a, b, c, and d are combined to form the
-64-bit hash.
+<br>•	After completing the 8 rounds, the final values of a, b, c, and d are combined to form the 64-bit hash.
 <br>•	This 64-bit hash is converted into ASCII format for output display.
 
 > Operational Steps:
