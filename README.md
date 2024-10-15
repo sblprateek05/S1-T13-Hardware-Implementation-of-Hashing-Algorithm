@@ -61,7 +61,7 @@ highlighting the need for a more effective solution.
 
 <img alt="S1-T13" src="https://github.com/user-attachments/assets/609ed5a3-643e-47c2-8d9a-046a5b99929e"><img/>
 
-> 1.	Input Handling:
+> ## 1.	Input Handling:
 <br>•	The system takes 6 ASCII values, each 8 bits long. These values are paired to form 16-bit message blocks:
 <br> M0 = {in0, in1}
 <br> M1 = {in2, in3}
@@ -69,7 +69,7 @@ highlighting the need for a more effective solution.
 <br>•	A fourth block, M3, holds the number of non-zero inputs to define the length of the message.
 <br>•	The blocks M0, M1, M2, and M3 form the input message.
 
-> 2.	Message Expansion:
+> ## 2.	Message Expansion:
 <br>•	The input message blocks are expanded into 8 words (W0 to W7) using the following equations:
 <br> –	For W0 to W3:
 <br> W(t) = M(t) for 0 <= t <= 3.
@@ -81,7 +81,7 @@ highlighting the need for a more effective solution.
 <br> ∗ ROT7(x) is a rotation by 7 bits,
 <br> ∗ RSH3(x) is a right shift by 3 bits.
 
-> 3.	Initial Hash Values (a, b, c, d):
+> ## 3.	Initial Hash Values (a, b, c, d):
 <br>•	The initial hash values a, b, c, and d are constants derived from the first 16 bits of the decimal part of the square roots of the first 4 prime numbers:
 <br> – a = 0110101000001001 (square root of 2),
 <br> – b = 1011101101100111 (square root of 3),
@@ -89,7 +89,7 @@ highlighting the need for a more effective solution.
 <br> – d = 1010010101001111 (square root of 7).
 
 
-> 4.	Round Constants (K[0] to K[7]):
+> ## 4.	Round Constants (K[0] to K[7]):
 <br> •	Predefined constants K[0] to K[7] are used during the hash generation to introduce complexity. These constants are the first 16 bits of the decimal part of the cube roots of the first 8 prime numbers. Specifically:
 <br>– K[0] = 0100001010001010 (cube root of 2),
 <br>– K[1] = 0111000100110111 (cube root of 3),
@@ -100,7 +100,7 @@ highlighting the need for a more effective solution.
 <br>– K[6] = 1001001000111111 (cube root of 17),
 <br>– K[7] = 1010101100011100 (cube root of 19).
 
-> 5.	Hash Computation:
+> ## 5.	Hash Computation:
 <br>•	The algorithm performs 8 rounds of computation, transforming the values of a, b, c, and d using two main operations: 
 <br>	-T1 Calculation:
 <br>T1 = Sigma1(c) + CH(b, c, d) + W(t) + K(t) + d where Sigma1(x) :
@@ -114,11 +114,11 @@ highlighting the need for a more effective solution.
 <br>•	b = a
 <br>•	a= T1 + T2
 
-> 6.	Final Hash Value:
+> ## 6.	Final Hash Value:
 <br>•	After completing the 8 rounds, the final values of a, b, c, and d are combined to form the 64-bit hash.
 <br>•	This 64-bit hash is converted into ASCII format for output display.
 
-> Operational Steps:
+> ## Operational Steps:
 <br>1.	Click Refresh:
 <br>•	This clears the output screen, resets the message blocks to zero, and sets all counters to zero.
 <br>2.	Clock Pulse 1:
