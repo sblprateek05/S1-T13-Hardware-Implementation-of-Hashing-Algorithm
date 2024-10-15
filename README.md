@@ -101,12 +101,11 @@ highlighting the need for a more effective solution.
 <br>– K[7] = 1010101100011100 (cube root of 19).
 
 > 5.	Hash Computation:
-<br>•	The algorithm performs 8 rounds of computation, transforming the values of a, b, c, and d using two main operations:
- 
-<br>–	T1 Calculation:
+<br>•	The algorithm performs 8 rounds of computation, transforming the values of a, b, c, and d using two main operations: 
+<br>	-T1 Calculation:
 <br>T1 = Sigma1(c) + CH(b, c, d) + W(t) + K(t) + d where Sigma1(x) :
 <br>Sigma1(x) = ROT2(x) + ROT7(x)
-<br>–	T2 Calculation:
+<br> –T2 Calculation:
 <br>T2 = Sigma0(a) + MAJ(a, b, c) where Sigma0(x) :
 <br>Sigma0(x) = ROT5(x) + ROT11(x)
 <br>•	These transformations are applied for each of the 8 words (W0 to W7), updating the values of a, b, c, and d in each round as shown below :
