@@ -59,8 +59,9 @@ highlighting the need for a more effective solution.
 <details>
   <summary>Detail</summary>
 
+![image]()
+<img alt="Flow Chart" src="https://github.com/user-attachments/assets/c9d7b562-1c4b-480a-a3c9-5185efe4e7bd"><img/>
 
-<img alt="S1-T13" src="https://github.com/user-attachments/assets/609ed5a3-643e-47c2-8d9a-046a5b99929e"><img/>
 
 > ## 1.	Input Handling:
 <br>•	The system takes 6 ASCII values, each 8 bits long. These values are paired to form 16-bit message blocks:
@@ -118,6 +119,8 @@ highlighting the need for a more effective solution.
 > ## 6.	Final Hash Value:
 <br>•	After completing the 8 rounds, the final values of a, b, c, and d are combined to form the 64-bit hash.
 <br>•	This 64-bit hash is converted into ASCII format for output display.
+
+<img alt="S1-T13" src="https://github.com/user-attachments/assets/609ed5a3-643e-47c2-8d9a-046a5b99929e"><img/>
 
 > ## Operational Steps:
 <br>1.	Click Refresh:
