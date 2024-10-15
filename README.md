@@ -22,20 +22,20 @@
   <summary>Detail</summary>
   
    > ## Motivation:
-> The motivation behind this project is to address the performance bottlenecks
+ The motivation behind this project is to address the performance bottlenecks
 faced by software implementations of the SHA-256 hash function, especially in resource-
 constrained environments like embedded systems and IoT devices. By implementing SHA-
 256 in hardware, we aim to achieve significant improvements in processing speed and power
 efficiency, which are critical for optimizing security and performance in these applications.
   
    > ## Problem Statement:
-> Traditional software implementations of SHA-256 can suffer from performance
+ Traditional software implementations of SHA-256 can suffer from performance
 limitations, particularly in systems with strict timing and power requirements. This
 creates challenges for applications that require both robust security and efficient performance,
 highlighting the need for a more effective solution.
   
    > ## Features:
-> <br>• Hardware implementation of the SHA-256 algorithm.
+  <br>• Hardware implementation of the SHA-256 algorithm.
   <br>• Significant improvements in processing speed and power efficiency compared to software solutions.
   <br>• Optimization for small inputs and a considerable number of hashing functions.
   <br>• Viability for applications that require enhanced security and performance optimization.
@@ -58,12 +58,7 @@ highlighting the need for a more effective solution.
 ## Working
 <details>
   <summary>Detail</summary>
->How To Work Logisim S1-T13.circ 
-  Click refresh once.
-  Enter your input string (max length: 6).
-  Keep applying clock pulse 1 until all the characters are read from the input, or just keep clicking the button until the counter display 1 stops at a number (stops at 7).
-  Keep applying clock pulse 2 until the counter display 2 stops at a number (stops at 7).
-  Keep applying clock pulse 3 until the counter display 3 stops at a number (stops at 8), or just keep applying the clock pulse until you see 8 characters in the output screen.
+
 
 <img alt="S1-T13" src="https://github.com/user-attachments/assets/609ed5a3-643e-47c2-8d9a-046a5b99929e"><img/>
 
@@ -140,6 +135,13 @@ highlighting the need for a more effective solution.
 ## Logisim Circuit Diagram
 <details>
   <summary>Detail</summary>
+
+  ## How To Use Logisim S1-T13.circ 
+  <br> 1. Click refresh once.
+  <br> 2. Enter your input string (max length: 6).
+  <br> 3. Keep applying clock pulse 1 until all the characters are read from the input, or just keep clicking the button until the counter display 1 stops at a number (stops at 7).
+  <br> 4. Keep applying clock pulse 2 until the counter display 2 stops at a number (stops at 7).
+  <br> 5. Keep applying clock pulse 3 until the counter display 3 stops at a number (stops at 8), or just keep applying the clock pulse until you see 8 characters in the output screen.
 
 >## Main Module
 ><img alt="Main Module" src="https://github.com/user-attachments/assets/80dcd7b3-6702-4f2c-96c8-d6a72f02e66b"><img/>
