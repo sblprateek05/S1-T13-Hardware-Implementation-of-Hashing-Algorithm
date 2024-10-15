@@ -119,7 +119,6 @@ highlighting the need for a more effective solution.
 <br>•	This 64-bit hash is converted into ASCII format for output display.
 
 > Operational Steps:
-<br>
 <br>1.	Click Refresh:
 <br>•	This clears the output screen, resets the message blocks to zero, and sets all counters to zero.
 <br>2.	Clock Pulse 1:
