@@ -202,6 +202,8 @@ highlighting the need for a more effective solution.
 
 <!-- Sixth Section -->
 ## Verilog Code
+<details>
+  <summary>Detail</summary>
 
 // Main Module
 module MainModule ();
@@ -512,4 +514,5 @@ module HashGenerator (      // Hash Generator
     end
 endmodule
 
+</details>
 
