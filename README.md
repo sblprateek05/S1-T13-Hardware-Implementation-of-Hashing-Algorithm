@@ -59,7 +59,6 @@ highlighting the need for a more effective solution.
 <details>
   <summary>Detail</summary>
 
-![image]()
 <img alt="Flow Chart" src="https://github.com/user-attachments/assets/c9d7b562-1c4b-480a-a3c9-5185efe4e7bd"><img/>
 
 
@@ -147,57 +146,70 @@ highlighting the need for a more effective solution.
   <br> 5. Keep applying clock pulse 3 until the counter display 3 stops at a number (stops at 8), or just keep applying the clock pulse until you see 8 characters in the output screen.
 
 >## Main Module
+<br>The main module takes input string of max length 6. It operates through the diagram as shown below. Finally, output is a 8 character(64 bit) hash. The output length is always fixed regardless of the length of input string.
+
 ><img alt="Main Module" src="https://github.com/user-attachments/assets/80dcd7b3-6702-4f2c-96c8-d6a72f02e66b"><img/>
 
 
 
 >## Padding Module
+<br>The input in the main module is passed to the Padding module. The Padding module gives 4 16-bit outputs M0, M1, M2 and M3. M0, M1 and M2 correspond to the ASCII values of the input string characters(in case of shortage of characters, 0 is put), and M3 represents the number of input characters, in a 16 bit format.
 ><img alt="Padding" src="https://github.com/user-attachments/assets/3696e794-8b66-4613-8aec-90f647cca45e"><img/>
 
 
 
 >## Ws Module
+<br>This module takes 4 inputs, M0, M1, M2 and M3, and produces 8 outputs, W0 to W7. Values of W0 to W3 are the same as M0 to M3, respectively. The latter Ws are calculated using the former Ws and the small sigma function.
 ><img alt="Ws" src="https://github.com/user-attachments/assets/6d092195-e13e-492d-8fee-1431882cda03"><img/>
 
 
 
 >## Small Sigma Function
+<br>This module takes a 16 bit input, performs bitwise rotations(7 and 11 times), a right shift and the output is the XOR od these 3 values.
 ><img alt="Small Sigma Function" src="https://github.com/user-attachments/assets/52955470-6dff-4340-9a25-753681596404"><img/>
 
 
 
 >## Upcounter Module
+<br>This module uses an upcounter but with some modifications. After the counter reaches 7, counter doesn’t increase on further clock pulses, further clock pulses applied no longer work on the circuits where the clock pulse signal is passed, unless refresh is clicked. The refresh button resets the counter to 0 and allows the clock pulses to work on the circuits to which it is passed, till the counter reaches 7. Then the same thing repeats.
 ><img alt="Upcounter" src="https://github.com/user-attachments/assets/705511ca-8e32-4a50-a426-46a967f6f5ac"><img/>
 
 
 
 >## Hash Generator Module
+<br>Generates hash values a, b, c and d for each round 7 times. For the first round, constant values are used as a, b, c and d. For the rest of the rounds, the newly obtained a, b, c and d are used. T1 and T2 modules are used to perform the operations. After all the rounds, the values a, b, c and d obtained are sent as ouput which are sent to the Characters module.
 ><img alt="Hash Generator" src="https://github.com/user-attachments/assets/e0e0dd9a-05d3-4a97-8c2c-b655835bbf9c"><img/>
 
 
 >## Last Upcounter Module
+<br>This module is the same as upcounter, with the only differ- ence being that the counter stops at 8 instead of 7. This is to make sure that all the 8 characters of the hash are displayed in the output.
 ><img alt="Last Upcounter" src="https://github.com/user-attachments/assets/edb18203-5406-4726-a2ac-80e78187a23d"><img/>
 
 
 
 >## Sigma 0 Module
+<br>Takes a 16 bit input, performs bitwise operations: left rotations 5 and 11 times, and returns their sum as output.
 ><img alt="Sigma 0" src="https://github.com/user-attachments/assets/40d1ea6e-ce96-4abe-9c6d-5904d353d935"><img/>
 
 >## Sigma 1 Module
+<br>Takes a 16 bit input, performs bitwise operations: left rotations 2 and 7 times, and returns their sum as output.
 ><img alt="Sigma 1" src="https://github.com/user-attachments/assets/46ea875a-3dbd-4a7d-9b21-b01484237720"><img/>
 
 
 >## T1 Module
+<br>Sigma1 module is used here. ’c’ is passed into the Sigma1 module and the output obtained is XORed with Choose(b,c,d), the product of d and K(t), and W(t) to give a 16 bit output.
 ><img alt="T1" src="https://github.com/user-attachments/assets/ff9e220e-3c0a-485d-81fe-1301544b6d4a"><img/>
 
 
 
 >## T2 Module
+<br>Uses Sigma0 function. ’a’ is passed into Sigma0 function to obtain an output which is added with the sum of pairwise products of a, b and c(i.e., MAJ(a, b, c)) to produce the output for T2 module.
 ><img alt="T2" src="https://github.com/user-attachments/assets/63b652c3-aee4-48ee-b07f-d5f4285d4580"><img/>
 
 
 
 >## Characters Module
+<br>This module is just used as an aid to display the output hash values as characters. The built-in tty output takes a 7 bit binay number and displays corresponding ASCII character for each clock pulse applied. To send 7 bits to the tty, Characters module is used, where 7 bits of data in sent for each clock pulse with the help of splitters.
 ><img alt="Characters" src="https://github.com/user-attachments/assets/125535f4-8cba-43f7-8cef-202d5b2fbfb6"><img/>
 
 
