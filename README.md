@@ -82,51 +82,55 @@ highlighting the need for a more effective solution.
 <br> ∗ RSH3(x) is a right shift by 3 bits.
 
 > 3.	Initial Hash Values (a, b, c, d):
-•	The initial hash values a, b, c, and d are constants derived from the first 16 bits of the decimal part of the square roots of the first 4 prime numbers:
-– a = 0110101000001001 (square root of 2),
-– b = 1011101101100111 (square root of 3),
-– c = 0011110001101110 (square root of 5),
-– d = 1010010101001111 (square root of 7).
+<br>•	The initial hash values a, b, c, and d are constants derived from the first 16 bits of the decimal part of the square roots of the first 4 prime numbers:
+<br> – a = 0110101000001001 (square root of 2),
+<br> – b = 1011101101100111 (square root of 3),
+<br> – c = 0011110001101110 (square root of 5),
+<br> – d = 1010010101001111 (square root of 7).
 
 
 > 4.	Round Constants (K[0] to K[7]):
-•	Predefined constants K[0] to K[7] are used during the hash generation to introduce com- plexity. These constants are the first 16 bits of the decimal part of the cube roots of the first 8 prime numbers. Specifically:
-– K[0] = 0100001010001010 (cube root of 2),
-– K[1] = 0111000100110111 (cube root of 3),
-– K[2] = 1011010111000000 (cube root of 5),
-– K[3] = 1110100110110101 (cube root of 7),
-– K[4] = 0011100101010110 (cube root of 11),
-– K[5] = 0101100111110001 (cube root of 13),
-– K[6] = 1001001000111111 (cube root of 17),
-– K[7] = 1010101100011100 (cube root of 19).
+<br> •	Predefined constants K[0] to K[7] are used during the hash generation to introduce complexity. These constants are the first 16 bits of the decimal part of the cube roots of the first 8 prime numbers. Specifically:
+<br>– K[0] = 0100001010001010 (cube root of 2),
+<br>– K[1] = 0111000100110111 (cube root of 3),
+<br>– K[2] = 1011010111000000 (cube root of 5),
+<br>– K[3] = 1110100110110101 (cube root of 7),
+<br>– K[4] = 0011100101010110 (cube root of 11),
+<br>– K[5] = 0101100111110001 (cube root of 13),
+<br>– K[6] = 1001001000111111 (cube root of 17),
+<br>– K[7] = 1010101100011100 (cube root of 19).
 
 > 5.	Hash Computation:
-•	The algorithm performs 8 rounds of computation, transforming the values of a, b, c, and d using two main operations:
+<br>•	The algorithm performs 8 rounds of computation, transforming the values of a, b, c, and d using two main operations:
  
-–	T1 Calculation:
-T1 = Sigma1(c) + CH(b, c, d) + W(t) + K(t) + d where Sigma1(x) :
-Sigma1(x) = ROT2(x) + ROT7(x)
-–	T2 Calculation:
-T2 = Sigma0(a) + MAJ(a, b, c) where Sigma0(x) :
-Sigma0(x) = ROT5(x) + ROT11(x)
-•	These transformations are applied for each of the 8 words (W0 to W7), updating the values of a, b, c, and d in each round as shown below :
-•	d = c
-•	c = b+T1
-•	b = a
-•	a= T1 + T2
+<br>–	T1 Calculation:
+<br>T1 = Sigma1(c) + CH(b, c, d) + W(t) + K(t) + d where Sigma1(x) :
+<br>Sigma1(x) = ROT2(x) + ROT7(x)
+<br>–	T2 Calculation:
+<br>T2 = Sigma0(a) + MAJ(a, b, c) where Sigma0(x) :
+<br>Sigma0(x) = ROT5(x) + ROT11(x)
+<br>•	These transformations are applied for each of the 8 words (W0 to W7), updating the values of a, b, c, and d in each round as shown below :
+<br>•	d = c
+<br>•	c = b+T1
+<br>•	b = a
+<br>•	a= T1 + T2
+
 > 6.	Final Hash Value:
-•	After completing the 8 rounds, the final values of a, b, c, and d are combined to form the
+
+<br>•	After completing the 8 rounds, the final values of a, b, c, and d are combined to form the
 64-bit hash.
-•	This 64-bit hash is converted into ASCII format for output display.
->Operational Steps:
-1.	Click Refresh:
-•	This clears the output screen, resets the message blocks to zero, and sets all counters to zero.
-2.	Clock Pulse 1:
-•	Apply Clock Pulse 1 until all input characters are read, or click until Counter Display 1 reaches 7.
-3.	Clock Pulse 2:
-•	Apply Clock Pulse 2 until Counter Display 2 reaches 7, indicating that the words are ready.
-4.	Clock Pulse 3:
-•	Apply Clock Pulse 3 until Counter Display 3 reaches 8, showing the final 8 characters of the 64-bit hash on the output screen.
+<br>•	This 64-bit hash is converted into ASCII format for output display.
+
+> Operational Steps:
+<br>
+<br>1.	Click Refresh:
+<br>•	This clears the output screen, resets the message blocks to zero, and sets all counters to zero.
+<br>2.	Clock Pulse 1:
+<br>•	Apply Clock Pulse 1 until all input characters are read, or click until Counter Display 1 reaches 7.
+<br>3.	Clock Pulse 2:
+<br>•	Apply Clock Pulse 2 until Counter Display 2 reaches 7, indicating that the words are ready.
+<br>4.	Clock Pulse 3:
+<br>•	Apply Clock Pulse 3 until Counter Display 3 reaches 8, showing the final 8 characters of the 64-bit hash on the output screen.
 
 </details>
 
