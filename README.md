@@ -205,227 +205,233 @@ highlighting the need for a more effective solution.
 <details>
   <summary>Detail</summary>
 
-// Main Module
-module MainModule ();
-    // Input ports (8 bits each)
-    input [7:0] in0;
-    input [7:0] in1;
-    input [7:0] in2;
-    input [7:0] in3;
-    input [7:0] in4;
-    input [7:0] in5;
+> ## Main Module
+  ``` 
+// The MainModule handles input processing by combining six 8-bit ASCII values into message blocks.
+// It initializes hash values and manages the overall hashing procedure through eight rounds of computation using helper modules.
+module MainModule (
+    input [7:0] in0,
+    input [7:0] in1,
+    input [7:0] in2,
+    input [7:0] in3,
+    input [7:0] in4,
+    input [7:0] in5,
+    output reg [15:0] a_out,   // Output for hash value a
+    output reg [15:0] b_out,   // Output for hash value b
+    output reg [15:0] c_out,   // Output for hash value c
+    output reg [15:0] d_out     // Output for hash value d
+);
 
-    // Output ports (16 bits each)
-    output reg [15:0] a_out;
-    output reg [15:0] b_out;
-    output reg [15:0] c_out;
-    output reg [15:0] d_out;
+// Define internal wires and registers
+wire [15:0] W [0:7];           // Message schedule array
+reg [15:0] a = 16'b0110101000001001;  // Initial hash value a
+reg [15:0] b = 16'b1011101101100111;  // Initial hash value b
+reg [15:0] c = 16'b0011110001101110;  // Initial hash value c
+reg [15:0] d = 16'b1010010101001111;  // Initial hash value d
 
-    // Internal wires for message schedule
-    wire [15:0] W [0:7];
+// Define constant K values for the hash function
+reg [15:0] K [0:7] = { 
+    16'b0100001010001010,
+    16'b0111000100110111,
+    16'b1011010111000000,
+    16'b1110100110110101,
+    16'b0011100101010110,
+    16'b0101100111110001,
+    16'b1001001000111111,
+    16'b1010101100011100
+};
 
-    // Initial hash values
-    reg [15:0] a = 16'b0110101000001001;
-    reg [15:0] b = 16'b1011101101100111;
-    reg [15:0] c = 16'b0011110001101110;
-    reg [15:0] d = 16'b1010010101001111;
+reg [2:0] num_non_zero_inputs;  // Count of non-zero inputs
+reg [15:0] M0, M1, M2, M3;       // Message blocks
+reg [15:0] temp_a, temp_b, temp_c, temp_d;  // Temporary variables for hash values
+integer i;
 
-    // Constants used in the hash algorithm
-    reg [15:0] K [0:7] = {
-        16'b0100001010001010,
-        16'b0111000100110111,
-        16'b1011010111000000,
-        16'b1110100110110101,
-        16'b0011100101010110,
-        16'b0101100111110001,
-        16'b1001001000111111,
-        16'b1010101100011100
-    };
+// Always block to process inputs and prepare message blocks
+always @* begin
+    num_non_zero_inputs = 0;  // Initialize count of non-zero inputs
 
-    // Registers to hold message blocks and non-zero input count
-    reg [2:0] num_non_zero_inputs;
-    reg [15:0] M0, M1, M2, M3;
-    reg [15:0] temp_a, temp_b, temp_c, temp_d;
-    integer i;
+    // Count non-zero inputs
+    if (in0 != 8'b00000000) num_non_zero_inputs = num_non_zero_inputs + 1;
+    if (in1 != 8'b00000000) num_non_zero_inputs = num_non_zero_inputs + 1;
+    if (in2 != 8'b00000000) num_non_zero_inputs = num_non_zero_inputs + 1;
+    if (in3 != 8'b00000000) num_non_zero_inputs = num_non_zero_inputs + 1;
+    if (in4 != 8'b00000000) num_non_zero_inputs = num_non_zero_inputs + 1;
+    if (in5 != 8'b00000000) num_non_zero_inputs = num_non_zero_inputs + 1;
 
-    // Process to determine the number of non-zero inputs and construct message blocks
-    always @* begin
-        num_non_zero_inputs = 0;
+    // Create message blocks from inputs
+    M0 = {in0, in1};
+    M1 = {in2, in3};
+    M2 = {in4, in5};
+    M3 = {13'b0, num_non_zero_inputs}; // Include non-zero count in M3
+end
 
-        // Count non-zero inputs
-        if (in0 != 8'b00000000) num_non_zero_inputs = num_non_zero_inputs + 1;
-        if (in1 != 8'b00000000) num_non_zero_inputs = num_non_zero_inputs + 1;
-        if (in2 != 8'b00000000) num_non_zero_inputs = num_non_zero_inputs + 1;
-        if (in3 != 8'b00000000) num_non_zero_inputs = num_non_zero_inputs + 1;
-        if (in4 != 8'b00000000) num_non_zero_inputs = num_non_zero_inputs + 1;
-        if (in5 != 8'b00000000) num_non_zero_inputs = num_non_zero_inputs + 1;
+// Instantiate the Ws module to process message blocks into W values
+module Ws ws_inst (
+    .M0(M0),
+    .M1(M1),
+    .M2(M2),
+    .M3(M3),
+    .W0(W[0]),
+    .W1(W[1]),
+    .W2(W[2]),
+    .W3(W[3]),
+    .W4(W[4]),
+    .W5(W[5]),
+    .W6(W[6]),
+    .W7(W[7])
+);
 
-        // Construct message blocks
-        M0 = {in0, in1};
-        M1 = {in2, in3};
-        M2 = {in4, in5};
-        M3 = {13'b0, num_non_zero_inputs}; // Last block includes non-zero count
+// Always block to execute the hashing process
+always @* begin
+    temp_a = a; // Store current hash value a
+    temp_b = b; // Store current hash value b
+    temp_c = c; // Store current hash value c
+    temp_d = d; // Store current hash value d
+
+    // Loop through 8 rounds of hashing
+    for (i = 0; i < 8; i = i + 1) begin
+        // Instantiate the HashGenerator module for each round
+        HashGenerator hash_gen_inst (
+            .a(temp_a),
+            .b(temp_b),
+            .c(temp_c),
+            .d(temp_d),
+            .K(K[i]),
+            .W(W[i]),
+            .a_out(temp_a),
+            .b_out(temp_b),
+            .c_out(temp_c),
+            .d_out(temp_d)
+        );
     end
 
-    // Instantiate the Ws module to compute W0 to W7
-    module_Ws ws_inst (
-        .M0(M0),
-        .M1(M1),
-        .M2(M2),
-        .M3(M3),
-        .W0(W[0]),
-        .W1(W[1]),
-        .W2(W[2]),
-        .W3(W[3]),
-        .W4(W[4]),
-        .W5(W[5]),
-        .W6(W[6]),
-        .W7(W[7])
-    );
-
-    // Hash calculation process
-    always @* begin
-        // Temporary registers to hold hash values
-        temp_a = a;
-        temp_b = b;
-        temp_c = c;
-        temp_d = d;
-
-        // Iteratively apply hash generator for each round
-        for (i = 0; i < 8; i = i + 1) begin
-            HashGenerator hash_gen_inst (
-                .a(temp_a),
-                .b(temp_b),
-                .c(temp_c),
-                .d(temp_d),
-                .K(K[i]),
-                .W(W[i]),
-                .a_out(temp_a),
-                .b_out(temp_b),
-                .c_out(temp_c),
-                .d_out(temp_d)
-            );
-        end
-
-        // Assign final output values
-        a_out = temp_a;
-        b_out = temp_b;
-        c_out = temp_c;
-        d_out = temp_d;
-    end
+    // Update output hash values after processing
+    a_out = temp_a;
+    b_out = temp_b;
+    c_out = temp_c;
+    d_out = temp_d;
+end
 endmodule
+```
 
+>## Small Sigma Function Module
 
-// Small Sigma Function
+```
+// This module computes the small sigma function, which is used in the message expansion process.
+// It performs bitwise rotations and a right shift to generate a new value from the input.
 module small_sigma(input [15:0] x, output [15:0] sigma_out);
     wire [15:0] b, s7, s3;
 
-    // Rotate and shift operations
-    assign b  = {x[13:0], x[15:14]};
-    assign s7 = {x[8:0], x[15:9]};
-    assign s3 = x >> 3;
+    assign b = {x[13:0], x[15:14]}; // Rotate x left by 2
+    assign s7 = {x[8:0], x[15:9]};  // Rotate x left by 7
+    assign s3 = x >> 3;             // Right shift x by 3
 
-    // Compute small sigma
-    assign sigma_out = b ^ s7 ^ s3;
+    assign sigma_out = b ^ s7 ^ s3; // XOR the rotated and shifted values
 endmodule
+```
 
+>## Ws Module
 
-
-// Ws Module for computing message schedule W
-module module_Ws(
-    input  [15:0] M0, M1, M2, M3,
+```
+// The module Ws expands the input message blocks (M0 to M3) into eight 16-bit words (W0 to W7).
+// It utilizes the small sigma function to generate the last four words based on the earlier ones.
+module Ws(
+    input [15:0] M0, M1, M2, M3,
     output [15:0] W0, W1, W2, W3, W4, W5, W6, W7
 );
     wire [15:0] sig_W1, sig_W2, sig_W3, sig_W4;
 
-    // Assign initial W values
-    assign W0 = M0;
-    assign W1 = M1;
-    assign W2 = M2;
-    assign W3 = M3;
+    assign W0 = M0;  // Assign M0 to W0
+    assign W1 = M1;  // Assign M1 to W1
+    assign W2 = M2;  // Assign M2 to W2
+    assign W3 = M3;  // Assign M3 to W3
 
-    // Compute small sigma for W1, W2, W3
-    small_sigma u1 (.x(W1), .sigma_out(sig_W1));
-    small_sigma u2 (.x(W2), .sigma_out(sig_W2));
-    small_sigma u3 (.x(W3), .sigma_out(sig_W3));
+    // Compute small sigma for W1, W2, and W3
+    small_sigma u1 (.x(W1), .sigma_out(sig_W1)); 
+    small_sigma u2 (.x(W2), .sigma_out(sig_W2)); 
+    small_sigma u3 (.x(W3), .sigma_out(sig_W3)); 
 
-    // Compute W4 and subsequent values using small sigma
-    assign W4 = sig_W1 + W3; // Compute W4 first
-    small_sigma u4 (.x(W4), .sigma_out(sig_W4));
+    // Compute W4 based on small sigma and previous W values
+    assign W4 = sig_W1 + W3; 
 
+    // Compute small sigma for W4
+    small_sigma u4 (.x(W4), .sigma_out(sig_W4)); 
+
+    // Compute W5, W6, and W7 based on previous W values
     assign W5 = sig_W2 + W4;
-    assign W6 = sig_W3 + W5;
-    assign W7 = sig_W4 + W6;
+    assign W6 = sig_W3 + W5; 
+    assign W7 = sig_W4 + W6; 
 endmodule
-
-
-
-// Sigma 0 Function
+```
+>## Sigma0 Function Module
+```
+// Sigma0 calculates a transformation used in hash computations.
+// It involves bitwise rotations of the input and outputs the sum of these rotations.
 module Sigma0 (
     input [15:0] a,
     output [15:0] sigma_out
 );
-    wire [15:0] rot5, rot11;
+    wire [15:0] rot5, rot11; 
     wire [15:0] sum;
 
-    // Rotate and sum operations for Sigma0
-    assign rot5 = {a[10:0], a[15:11]};
-    assign rot11 = {a[4:0], a[15:5]};
-    assign sum = rot5 + rot11;
-    assign sigma_out = sum;
+    assign rot5 = {a[10:0], a[15:11]}; // Rotate a left by 5
+    assign rot11 = {a[4:0], a[15:5]};  // Rotate a left by 11
+    assign sum = rot5 + rot11;        // Sum the rotated values
+    assign sigma_out = sum;            // Output the sum
 endmodule
+```
 
+>## Sigma1 Function Module
 
-
-
-
-// Sigma 1 Function
+```
+// This module computes the Sigma1 function, which is a part of the hash generation process.
+// It involves rotating the input value and summing the results to create a transformed output.
 module Sigma1 (
     input [15:0] c,
     output [15:0] sigma1_out
 );
     wire [15:0] rot2, rot7;
 
-    // Rotate operations for Sigma1
-    assign rot2 = {c[13:0], c[15:14]};
-    assign rot7 = {c[8:0], c[15:9]};
-    assign sigma1_out = rot2 + rot7;
+    assign rot2 = {c[13:0], c[15:14]}; // Rotate c left by 2
+    assign rot7 = {c[8:0], c[15:9]};   // Rotate c left by 7
+    assign sigma1_out = rot2 + rot7;   // Output the sum of the rotated values
 endmodule
+```
 
+>## T2 Module
 
-
-
-
-// T2 Function
+```
+// T2 combines the output of the Sigma0 function with a majority function to produce a value used in hash calculations.
+// It evaluates conditions based on inputs a, b, and c.
 module T2 (
     input [15:0] a,
     input [15:0] b,
     input [15:0] c,
     output [15:0] t2_out
 );
-    wire [15:0] sigma0_a;
-    wire [15:0] and_ab, and_bc, and_ca;
-    
-    // Compute Sigma0 for input a
+    wire [15:0] sigma0_a;  // Output from Sigma0
+    wire [15:0] and_ab, and_bc, and_ca; // Intermediate values
+
+    // Instantiate Sigma0 to get sigma0_a
     Sigma0 sigma0_inst (
         .a(a),
         .sigma_out(sigma0_a)
     );
 
-    // Bitwise AND operations
-    assign and_ab = a & b;
-    assign and_bc = b & c;
+    // Compute bitwise ANDs for the majority function
+    assign and_ab = a & b; 
+    assign and_bc = b & c; 
     assign and_ca = c & a;
 
-    // Compute T2 output
-    assign t2_out = and_ab | and_bc | and_ca | sigma0_a;
+    // Compute the output as a combination of the ANDs and sigma0_a
+    assign t2_out = and_ab | and_bc | and_ca | sigma0_a; 
 endmodule
-
-
-
-
-// T1 Function
-module T1 (        // T1
+```
+>## T1 Module
+```
+// T1 calculates a value used in the hash function that incorporates the Sigma1 function and a choice function based on the inputs b, c, d, and K.
+// It performs bitwise operations to derive the result.
+module T1 (
     input [15:0] b,
     input [15:0] c,
     input [15:0] d,
@@ -433,42 +439,46 @@ module T1 (        // T1
     input [15:0] W,
     output [15:0] T1_out
 );
-    wire [15:0] sigma1_c;
-    wire [15:0] choose_out;
-    wire [15:0] and_bc, not_b, and_not_bd;
+    wire [15:0] sigma1_c;      // Output from Sigma1
+    wire [15:0] choose_out;     // Output from the choice function
+    wire [15:0] and_bc, not_b, and_not_bd; 
 
-    // Compute Sigma1 for input c
+    // Instantiate Sigma1 to get sigma1_c
     Sigma1 sigma1_inst (
         .c(c),
         .sigma1_out(sigma1_c)
     );
 
-    // Bitwise AND and NOT operations
-    assign and_bc = b & c;
+    // Compute bitwise ANDs and negations for choice function
+    assign and_bc = b & c; 
     assign not_b = ~b;
     assign and_not_bd = not_b & d;
 
-    // Compute T1 output
-    assign T1_out = sigma1_c ^ choose_out ^ (d & K) ^ W;
+    // Compute the choice function
+    assign choose_out = and_bc | and_not_bd;
+
+    // Compute the output using XOR of the components
+    assign T1_out = sigma1_c ^ choose_out ^ (d & K) ^ W; 
 endmodule
-
-
-// Hash Generator Module
-module HashGenerator (      // Hash Generator
+```
+>## Hash Generator Module
+```
+// The HashGenerator executes the hashing operations for each round by updating the hash values (a, b, c, d) based on T1 and T2 outputs.
+// It iterates through the calculations to refine the hash state.
+module HashGenerator (
     input [15:0] a,
     input [15:0] b,
     input [15:0] c,
     input [15:0] d,
     input [15:0] K,
     input [15:0] W,
-    output reg [15:0] a_out,
-    output reg [15:0] b_out,
-    output reg [15:0] c_out,
+    output reg [15:0] a_out, 
+    output reg [15:0] b_out, 
+    output reg [15:0] c_out, 
     output reg [15:0] d_out
 );
-
-    wire [15:0] T1_out;
-    wire [15:0] T2_out;
+    wire [15:0] T1_out; // Output from T1
+    wire [15:0] T2_out; // Output from T2
 
     // Instantiate T1 and T2 modules
     T1 t1_inst (
@@ -487,32 +497,88 @@ module HashGenerator (      // Hash Generator
         .t2_out(T2_out)
     );
 
-    // Temporary registers for intermediate hash values
-    integer i;
-    reg [15:0] temp_a, temp_b, temp_c, temp_d;
+    integer i; // Loop counter
+    reg [15:0] temp_a, temp_b, temp_c, temp_d; // Temporary variables for hash values
 
-    // Process for updating hash values
+    // Always block for executing the hash generation process
     always @(*) begin
-        temp_a = a;
-        temp_b = b;
-        temp_c = c;
-        temp_d = d;
+        temp_a = a; // Store current value of a
+        temp_b = b; // Store current value of b
+        temp_c = c; // Store current value of c
+        temp_d = d; // Store current value of d
 
-        // Iterate to apply T1 and T2 transformations
+        // Loop through 7 iterations to refine the hash values
         for (i = 0; i < 7; i = i + 1) begin
             temp_a = T1_out + T2_out; // Update temp_a
-            temp_b = temp_a; // Update temp_b
+            temp_b = temp_a;           // Update temp_b
             temp_c = temp_b + T1_out; // Update temp_c
-            temp_d = temp_c; // Update temp_d
+            temp_d = temp_c;          // Update temp_d
         end
 
-        // Assign final output values
+        // Assign final computed values to outputs
         a_out = temp_a;
         b_out = temp_b;
         c_out = temp_c;
         d_out = temp_d;
     end
 endmodule
+```
+>## Test Bench
+
+```
+// This testbench code instantiates the MainModule and applies six 8-bit input values, representing the ASCII characters ’A’ to ’F’.
+// It then observes four 16-bit output signals (a_out, b_out, c_out, d_out). After a 10-time unit delay, it displays the output values in binary format and terminates the simulation.
+// The goal is to verify how the module processes these inputs.
+module tb_MainModule;
+    reg [7:0] in0; // Input register for ASCII A
+    reg [7:0] in1; // Input register for ASCII B
+    reg [7:0] in2; // Input register for ASCII C
+    reg [7:0] in3; // Input register for ASCII D
+    reg [7:0] in4; // Input register for ASCII E
+    reg [7:0] in5; // Input register for ASCII F
+
+    wire [15:0] a_out; // Output wire for hash value a
+    wire [15:0] b_out; // Output wire for hash value b
+    wire [15:0] c_out; // Output wire for hash value c
+    wire [15:0] d_out; // Output wire for hash value d
+
+    // Instantiate the MainModule under test (uut)
+    MainModule uut (
+        .in0(in0),
+        .in1(in1),
+        .in2(in2),
+        .in3(in3),
+        .in4(in4),
+        .in5(in5),
+        .a_out(a_out),
+        .b_out(b_out),
+        .c_out(c_out),
+        .d_out(d_out)
+    );
+
+    initial begin
+        // Initialize inputs with ASCII values for 'A' to 'F'
+        in0 = 8'b01000001; // A
+        in1 = 8'b01000010; // B
+        in2 = 8'b01000011; // C
+        in3 = 8'b01000100; // D
+        in4 = 8'b01000101; // E
+        in5 = 8'b01000110; // F
+
+        #10; // Wait for 10 time units
+        // Display output values
+        $display("a_out: %b", a_out);
+        $display("b_out: %b", b_out);
+        $display("c_out: %b", c_out);
+        $display("d_out: %b", d_out);
+    end
+
+    #10; // Additional wait before finishing
+    $finish; // End the simulation
+endmodule
+```
+
+
 
 </details>
 
