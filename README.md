@@ -604,13 +604,15 @@ endmodule
  <details>
   <summary>Detail</summary>
 
-[1]	Hwang, Limsui, Zhao, “Wireless Heart Attack Detector with GPS”, ECE445. University of Illinois, Fall 2004, https://courses.ece.uiuc.edu/ece445/cgi-bin/view_project.pl?fall2004_24  
-  
-[2]	National Heart, Lung, and Blood Institute, Disease and Condition Index, “What Is Coronary Artery  Disease?”, August 2003, http://www.nhlbi.nih.gov/health/dci/Diseases/Cad/CAD_WhatIs.html  
-  
-[3]	ECG Library. 2002. http://www.ecglibrary.com/ecghome.html  
-  
-[4]	Wikipedia, the Free Encyclopedia, “RS-232”, April 30, 2005,  http://en.wikipedia.org/wiki/RS-232
+[1] Simplilearn : https://www.simplilearn.com/tutorials/cyber-security-tutorial/sha-256-algorithm
+
+[2] Tutorial Point : https://www.tutorialspoint.com/cryptography/sha256algorithm.htm
+
+[3] Youtube : https://www.youtube.com/watch?v=orIgy2MjqrA
+
+[4] SSL Dragon : https://www.ssldragon.com/blog/sha-256-algorithm/
+
+[5] Youtube : https://www.youtube.com/watch?v=PbFVTb7Pndct=726s
 
 
 
