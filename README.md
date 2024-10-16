@@ -598,6 +598,8 @@ endmodule
 
 
 </details>
+
+<!-- Seventh Section -->
  ## References
  <details>
   <summary>Detail</summary>
