@@ -223,6 +223,10 @@ highlighting the need for a more effective solution.
   <summary>Detail</summary>
 
 > ## Main Module
+
+
+<details>
+
   ``` 
 //Main Module
 
@@ -323,7 +327,11 @@ endmodule
 
 ```
 
+</details>
+
 >## Small Sigma Function Module
+
+<details>
 
 ```
 // Small Sigma Function
@@ -338,8 +346,12 @@ module small_sigma(input [15:0] x, output [15:0] sigma_out);
     assign sigma_out = b ^ s7 ^ s3;
 endmodule
 ```
+</details>
+
 
 >## Ws Module
+
+<details>
 
 ```
 // Ws Module
@@ -367,7 +379,12 @@ module module_Ws(
     assign W7 = sig_W4 + W6;
 endmodule
 ```
+</details>
+
 >## Sigma0 Function Module
+
+<details>
+
 ```
 // Sigma 0 
   
@@ -385,7 +402,11 @@ module Sigma0 (
 endmodule
 ```
 
+</details>
+
 >## Sigma1 Function Module
+
+<details>
 
 ```
 //  Sigma 1
@@ -403,7 +424,11 @@ module Sigma1 (
 endmodule
 ```
 
+</details>
+
 >## T2 Module
+
+<details>
 
 ```
 // T2
@@ -430,7 +455,13 @@ module T2 (
     assign t2_out = and_ab | and_bc | and_ca | sigma0_a;
 endmodule
 ```
+
+</details>
+
 >## T1 Module
+
+<details>
+
 ```
 // T1
 
@@ -460,7 +491,12 @@ module T1 (
 
 endmodule
 ```
+</details>
+
 >## Hash Generator Module
+
+<details>
+
 ```
 // Hashgenetor 
 
@@ -520,7 +556,12 @@ module HashGenerator (
 
 endmodule
 ```
+
+</details>
+
 >## Test Bench
+
+<details>
 
 ```
 module tb_MainModule;
@@ -579,6 +620,8 @@ module tb_MainModule;
 endmodule
 
 ```
+
+</details>
 
 
 
